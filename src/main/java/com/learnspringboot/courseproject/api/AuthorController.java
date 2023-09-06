@@ -38,14 +38,14 @@ public class AuthorController {
     }
 
     @GetMapping(path = "{id}")
-    public AuthorDto getAuthorById(@PathVariable long id){
+    public AuthorDto getAuthorById(@PathVariable("id") long id){
         Author author = authorService.getAuthor(id);
         return convertToDto(author);
 
     }
 
     @PutMapping(path = "{id}")
-    public AuthorDto updateAuthor(@PathVariable long id, @RequestBody AuthorDto authorDto){
+    public AuthorDto updateAuthor(@PathVariable("id") long id, @RequestBody AuthorDto authorDto){
         var entity = convertToEntity(authorDto);
         return convertToDto(authorService.updateAuthor(id, entity));
     }
@@ -56,7 +56,7 @@ public class AuthorController {
     }
 
     @DeleteMapping(path = "{id}")
-    public void deleteAuthor(@PathVariable long id){
+    public void deleteAuthor(@PathVariable("id") long id){
         authorService.deleteAuthor(id);
     }
 
