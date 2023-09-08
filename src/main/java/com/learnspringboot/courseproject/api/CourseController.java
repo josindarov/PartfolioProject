@@ -54,6 +54,7 @@ public class CourseController {
     @PutMapping(path = "{id}")
     public CourseGetDto updateCourse(@PathVariable("id") long id, @RequestBody CourseDto courseDto){
         var course = convertToEntity(courseDto);
+        course.setAuthor(authorService.getAuthor(courseDto.getAuthor_id()));
         var result = convertToDto(courseService.updateCourse(id, course));
         result.setAuthorName(course.getAuthor().getName());
         return result;
